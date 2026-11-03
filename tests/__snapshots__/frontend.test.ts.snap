@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lexer > main.rs tokens 1`] = `
+[
+  "kw:extern@1:1",
+  "kw:fn@1:8",
+  "ident:square@1:11",
+  "punct:(@1:17",
+  "ident:x@1:18",
+  "punct::@1:19",
+  "type:i32@1:21",
+  "punct:)@1:24",
+  "punct:->@1:26",
+  "type:i32@1:29",
+  "punct:;@1:32",
+  "kw:fn@4:1",
+  "ident:main@4:4",
+  "punct:(@4:8",
+  "punct:)@4:9",
+  "punct:->@4:11",
+  "type:i32@4:14",
+  "punct:{@4:18",
+  "kw:let@5:5",
+  "kw:mut@5:9",
+  "ident:sum@5:13",
+  "punct::@5:16",
+  "type:i32@5:18",
+  "op:=@5:22",
+  "int:0@5:24",
+  "punct:;@5:25",
+  "kw:let@6:5",
+  "kw:mut@6:9",
+  "ident:i@6:13",
+  "punct::@6:14",
+  "type:i32@6:16",
+  "op:=@6:20",
+  "int:1@6:22",
+  "punct:;@6:23",
+  "kw:let@7:5",
+  "ident:unused@7:9",
+  "punct::@7:15",
+  "type:i32@7:17",
+  "op:=@7:21",
+  "int:7@7:23",
+  "op:*@7:25",
+  "int:6@7:27",
+  "punct:;@7:28",
+  "kw:while@8:5",
+  "ident:i@8:11",
+  "op:<@8:13",
+  "int:5@8:15",
+  "punct:{@8:17",
+  "ident:sum@9:9",
+  "op:=@9:13",
+  "ident:sum@9:15",
+  "op:+@9:19",
+  "ident:square@9:21",
+  "punct:(@9:27",
+  "ident:i@9:28",
+  "punct:)@9:29",
+  "punct:;@9:30",
+  "ident:i@10:9",
+  "op:=@10:11",
+  "ident:i@10:13",
+  "op:+@10:15",
+  "int:1@10:17",
+  "punct:;@10:18",
+  "punct:}@11:5",
+  "kw:let@12:5",
+  "ident:k@12:9",
+  "punct::@12:10",
+  "type:i32@12:12",
+  "op:=@12:16",
+  "int:2@12:18",
+  "op:+@12:20",
+  "int:3@12:22",
+  "punct:;@12:23",
+  "ident:sum@13:5",
+  "op:+@13:9",
+  "ident:k@13:11",
+  "punct:}@14:1",
+  "eof:@15:1",
+]
+`;
+
+exports[`lexer > math.rs tokens 1`] = `
+[
+  "kw:fn@2:1",
+  "ident:square@2:4",
+  "punct:(@2:10",
+  "ident:x@2:11",
+  "punct::@2:12",
+  "type:i32@2:14",
+  "punct:)@2:17",
+  "punct:->@2:19",
+  "type:i32@2:22",
+  "punct:{@2:26",
+  "ident:x@3:5",
+  "op:*@3:7",
+  "ident:x@3:9",
+  "punct:}@4:1",
+  "eof:@5:1",
+]
+`;
+
+exports[`parser > main.rs AST 1`] = `
+"(program
+  (extern-fn square (x:i32) -> i32)
+  (fn main () -> i32 {(let mut sum:i32 0) (let mut i:i32 1) (let unused:i32 (* 7 6)) (while (< i 5) {(= sum (+ sum (call square i))) (= i (+ i 1))}) (let k:i32 (+ 2 3)) tail (+ sum k)}))"
+`;
+
+exports[`parser > math.rs AST 1`] = `
+"(program
+  (fn square (x:i32) -> i32 {tail (* x x)}))"
+`;
